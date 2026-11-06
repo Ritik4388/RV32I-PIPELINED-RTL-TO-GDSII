@@ -1,0 +1,10 @@
+rtl/riscv_pkg.sv
+rtl/decoder.sv
+rtl/regfile.sv
+rtl/alu.sv
+rtl/branch_unit.sv
+rtl/forwarding_unit.sv
+rtl/hazard_unit.sv
+rtl/branch_predictor.sv
+rtl/riscv_core.sv
+tb/tb_top.sv

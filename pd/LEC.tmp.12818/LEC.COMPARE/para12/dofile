@@ -1,0 +1,15 @@
+//This dofile is generated during multithreaded processing
+
+cd /root/svp/rv32i_pipe/pd/LEC.tmp.12818/LEC.COMPARE/para12
+set log file lec.log -replace
+read design g.v -root top -golden
+read design r.v -root top -revised
+set ma m -name only
+set system mode lec
+
+add compared points -all
+set compare effort low
+usage -elapse -tag BEFORE_COMPARE
+compare -para_write_results 
+usage -elapse -delta -tag AFTER_COMPARE
+exit -f

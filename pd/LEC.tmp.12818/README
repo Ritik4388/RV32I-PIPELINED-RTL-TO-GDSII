@@ -1,0 +1,13 @@
+//----------------------------------------------------------------------------//
+//                               CONFORMAL (R)                                //
+//            Version 20.20-s200 (01-Feb-2021) (64 bit executable)            //
+//                         Temp Directory README file                         //
+//                          Fri Nov  6 10:49:42 2026                          //
+//                                                                            //
+//             Cadence Design Systems, Inc. All rights reserved.              //
+//----------------------------------------------------------------------------//
+
+This temporary directory is created for Conformal LEC.
+Do NOT alter, move or delete this directory during LEC runs.
+If process 12818 on host 'vlsi.iiita.ac.in' finished or is terminated,
+this directory can be safely deleted.

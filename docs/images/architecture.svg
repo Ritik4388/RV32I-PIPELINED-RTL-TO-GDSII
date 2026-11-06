@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
+    <marker id="a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="a-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+    <marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+    <style>
+      .box  { fill:#ffffff; stroke:#334155; stroke-width:1.6; }
+      .ext  { fill:#f8fafc; stroke:#64748b; stroke-width:1.4; stroke-dasharray:5 4; }
+      .unit { fill:#eef2ff; stroke:#4338ca; stroke-width:1.6; }
+      .mux  { fill:#e2e8f0; stroke:#334155; stroke-width:1.4; }
+      .reg  { fill:#1e293b; }
+      .t    { font-size:13px; fill:#0f172a; text-anchor:middle; }
+      .tb   { font-size:14px; fill:#0f172a; text-anchor:middle; font-weight:700; }
+      .ts   { font-size:11px; fill:#475569; text-anchor:middle; }
+      .tl   { font-size:11.5px; fill:#334155; }
+      .stg  { font-size:16px; font-weight:700; fill:#ffffff; text-anchor:middle; }
+      .stgs { font-size:11px; fill:#e2e8f0; text-anchor:middle; }
+      .rl   { font-size:11px; fill:#ffffff; text-anchor:middle; font-weight:700; }
+      .d    { fill:none; stroke:#334155; stroke-width:1.8; marker-end:url(#a-dark); }
+      .fw   { fill:none; stroke:#ea580c; stroke-width:2.2; marker-end:url(#a-orange); }
+      .rd   { fill:none; stroke:#dc2626; stroke-width:2; stroke-dasharray:7 4; marker-end:url(#a-red); }
+      .st   { fill:none; stroke:#7c3aed; stroke-width:2; stroke-dasharray:7 4; marker-end:url(#a-purple); }
+      .up   { fill:none; stroke:#64748b; stroke-width:1.6; stroke-dasharray:4 4; marker-end:url(#a-gray); }
+      .wb   { fill:none; stroke:#059669; stroke-width:2.2; marker-end:url(#a-green); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="720" rx="14" fill="#ffffff"/>
+
+  <!-- stage headers -->
+  <rect x="40"   y="28" width="220" height="44" rx="8" fill="#0369a1"/>
+  <text class="stg" x="150" y="49">IF</text><text class="stgs" x="150" y="65">fetch + predict</text>
+  <rect x="300"  y="28" width="220" height="44" rx="8" fill="#0e7490"/>
+  <text class="stg" x="410" y="49">ID</text><text class="stgs" x="410" y="65">decode + read registers</text>
+  <rect x="560"  y="28" width="260" height="44" rx="8" fill="#047857"/>
+  <text class="stg" x="690" y="49">EX</text><text class="stgs" x="690" y="65">execute + resolve branches</text>
+  <rect x="860"  y="28" width="180" height="44" rx="8" fill="#b45309"/>
+  <text class="stg" x="950" y="49">MEM</text><text class="stgs" x="950" y="65">load / store</text>
+  <rect x="1080" y="28" width="160" height="44" rx="8" fill="#be123c"/>
+  <text class="stg" x="1160" y="49">WB</text><text class="stgs" x="1160" y="65">write back</text>
+
+  <!-- pipeline registers -->
+  <rect class="reg" x="270"  y="96" width="20" height="452" rx="3"/>
+  <rect class="reg" x="530"  y="96" width="20" height="452" rx="3"/>
+  <rect class="reg" x="830"  y="96" width="20" height="452" rx="3"/>
+  <rect class="reg" x="1050" y="96" width="20" height="452" rx="3"/>
+  <text class="rl" transform="translate(284,525) rotate(-90)">IF/ID</text>
+  <text class="rl" transform="translate(544,525) rotate(-90)">ID/EX</text>
+  <text class="rl" transform="translate(844,525) rotate(-90)">EX/MEM</text>
+  <text class="rl" transform="translate(1064,525) rotate(-90)">MEM/WB</text>
+
+  <!-- IF -->
+  <rect class="unit" x="90" y="126" width="165" height="66" rx="8"/>
+  <text class="tb" x="172" y="152">Branch Predictor</text>
+  <text class="ts" x="172" y="170">64-entry BTB</text>
+  <text class="ts" x="172" y="184">2-bit BHT counters</text>
+
+  <polygon class="mux" points="50,232 72,244 72,316 50,328"/>
+  <text class="ts" x="61" y="284">M</text>
+  <rect class="box" x="96" y="256" width="50" height="48" rx="6"/>
+  <text class="tb" x="121" y="285">PC</text>
+  <rect class="ext" x="170" y="236" width="88" height="88" rx="8"/>
+  <text class="t" x="214" y="276">Instr</text><text class="t" x="214" y="292">Memory</text>
+
+  <circle class="box" cx="121" cy="372" r="16"/><text class="t" x="121" y="377">+4</text>
+
+  <path class="d" d="M72,280 L94,280"/>
+  <path class="d" d="M146,280 L168,280"/>
+  <path class="d" d="M258,280 L268,280"/>
+  <path class="d" d="M121,304 L121,354"/>
+  <path class="d" d="M105,372 L36,372 L36,304 L48,304"/>
+  <path class="d" d="M121,256 L121,194"/>
+  <path class="d" d="M90,170 L26,170 L26,256 L48,256"/>
+  <text class="tl" transform="translate(20,252) rotate(-90)">predicted target</text>
+
+  <!-- ID -->
+  <rect class="box" x="318" y="126" width="120" height="66" rx="8"/>
+  <text class="tb" x="378" y="153">Decoder</text><text class="ts" x="378" y="171">+ immediate gen</text>
+
+  <rect class="box" x="318" y="236" width="196" height="108" rx="8"/>
+  <text class="tb" x="416" y="268">Register File</text>
+  <text class="ts" x="416" y="288">32 × 32-bit, 2 read / 1 write</text>
+  <text class="ts" x="416" y="304">write → read bypass</text>
+
+  <rect class="unit" x="318" y="452" width="196" height="62" rx="8"/>
+  <text class="tb" x="416" y="478">Hazard Unit</text>
+  <text class="ts" x="416" y="496">load-use stall · mispredict flush</text>
+
+  <path class="d" d="M290,159 L316,159"/>
+  <path class="d" d="M290,290 L316,290"/>
+  <path class="d" d="M438,159 L528,159"/>
+  <path class="d" d="M514,270 L528,270"/>
+  <path class="d" d="M514,310 L528,310"/>
+
+  <!-- EX -->
+  <rect class="unit" x="640" y="122" width="170" height="74" rx="8"/>
+  <text class="tb" x="725" y="148">Branch Unit</text>
+  <text class="ts" x="725" y="166">compare · target</text>
+  <text class="ts" x="725" y="181">actual vs predicted PC</text>
+
+  <polygon class="mux" points="574,236 596,248 596,276 574,288"/>
+  <text class="ts" x="585" y="266">A</text>
+  <polygon class="mux" points="574,296 596,308 596,336 574,348"/>
+  <text class="ts" x="585" y="326">B</text>
+
+  <polygon class="box" points="650,234 720,262 720,322 650,350 650,306 664,292 650,278"/>
+  <text class="tb" x="694" y="297">ALU</text>
+
+  <rect class="unit" x="600" y="452" width="210" height="62" rx="8"/>
+  <text class="tb" x="705" y="478">Forwarding Unit</text>
+  <text class="ts" x="705" y="496">selects A / B source</text>
+
+  <path class="d" d="M550,262 L572,262"/>
+  <path class="d" d="M550,322 L572,322"/>
+  <path class="d" d="M596,262 L648,262"/>
+  <path class="d" d="M596,322 L648,322"/>
+  <path class="d" d="M612,262 L612,210 L680,210 L680,198"/>
+  <path class="d" d="M720,292 L828,292"/>
+  <path class="up" d="M705,452 L705,420 L585,420 L585,350"/>
+
+  <!-- MEM -->
+  <rect class="ext" x="880" y="236" width="140" height="88" rx="8"/>
+  <text class="t" x="950" y="268">Data Memory</text>
+  <text class="ts" x="950" y="286">byte enables</text>
+  <text class="ts" x="950" y="301">load sign/zero extend</text>
+  <path class="d" d="M850,280 L878,280"/>
+  <path class="d" d="M1020,280 L1048,280"/>
+  <path class="d" d="M850,216 L1048,216"/>
+  <text class="tl" x="900" y="210">ALU result / PC+4</text>
+
+  <!-- WB -->
+  <polygon class="mux" points="1100,224 1124,236 1124,312 1100,324"/>
+  <text class="ts" x="1112" y="278">M</text>
+  <path class="d" d="M1070,250 L1098,250"/>
+  <path class="d" d="M1070,296 L1098,296"/>
+  <text class="t" x="1186" y="196">commit trace</text>
+  <text class="ts" x="1186" y="212">→ testbench / Spike</text>
+  <path class="d" d="M1124,274 L1190,274 L1190,222"/>
+
+  <!-- write back to register file -->
+  <path class="wb" d="M1150,274 L1150,600 L416,600 L416,346"/>
+  <text class="tl" x="770" y="594" fill="#059669">write back rd</text>
+
+  <!-- forwarding -->
+  <path d="M830,380 L563,380" fill="none" stroke="#ea580c" stroke-width="2.2"/>
+  <path d="M1050,400 L563,400 L563,250" fill="none" stroke="#ea580c" stroke-width="2.2"/>
+  <circle cx="563" cy="380" r="3.5" fill="#ea580c"/>
+  <circle cx="563" cy="342" r="3.5" fill="#ea580c"/>
+  <path class="fw" d="M563,250 L572,250"/>
+  <path class="fw" d="M563,342 L572,342"/>
+  <text class="tl" x="690" y="374" fill="#ea580c">forward from EX/MEM</text>
+  <text class="tl" x="900" y="394" fill="#ea580c">forward from MEM/WB</text>
+
+  <!-- mispredict redirect -->
+  <path class="rd" d="M760,122 L760,90 L61,90 L61,230"/>
+  <text class="tl" x="300" y="85" fill="#dc2626">mispredict: redirect PC, flush IF/ID and ID/EX</text>
+
+  <!-- predictor update -->
+  <path class="up" d="M640,140 L600,140 L600,108 L230,108 L230,124"/>
+  <text class="tl" x="330" y="103" fill="#64748b">update BTB / BHT</text>
+
+  <!-- stall -->
+  <path class="st" d="M318,483 L142,483 L142,306"/>
+  <text class="tl" x="152" y="476" fill="#7c3aed">stall PC + IF/ID</text>
+
+  <!-- legend -->
+  <g transform="translate(40,640)">
+    <rect x="0" y="0" width="1200" height="52" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <line x1="20"  y1="26" x2="60"  y2="26" stroke="#334155" stroke-width="2"/><text class="tl" x="68"  y="30">datapath</text>
+    <line x1="160" y1="26" x2="200" y2="26" stroke="#ea580c" stroke-width="2.2"/><text class="tl" x="208" y="30">forwarding</text>
+    <line x1="310" y1="26" x2="350" y2="26" stroke="#059669" stroke-width="2.2"/><text class="tl" x="358" y="30">write back</text>
+    <line x1="460" y1="26" x2="500" y2="26" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 4"/><text class="tl" x="508" y="30">redirect / flush</text>
+    <line x1="640" y1="26" x2="680" y2="26" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7 4"/><text class="tl" x="688" y="30">stall</text>
+    <line x1="760" y1="26" x2="800" y2="26" stroke="#64748b" stroke-width="1.6" stroke-dasharray="4 4"/><text class="tl" x="808" y="30">control</text>
+    <rect x="890" y="16" width="14" height="20" rx="2" fill="#1e293b"/><text class="tl" x="912" y="30">pipeline register</text>
+    <rect x="1050" y="16" width="30" height="20" rx="4" fill="#f8fafc" stroke="#64748b" stroke-dasharray="5 4"/><text class="tl" x="1088" y="30">outside core</text>
+  </g>
+</svg>
