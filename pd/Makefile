@@ -36,3 +36,9 @@ antenna:
 	@mkdir -p logs
 	innovus -nowin -overwrite -files pnr/fix_antenna.tcl -log logs/innovus_antenna < /dev/null
 
+
+.PHONY: ir
+ir: config_auto.tcl
+	@mkdir -p logs
+	-innovus -nowin -overwrite -files ir/ir.tcl -log logs/ir < /dev/null
+	@bash ir/summary.sh

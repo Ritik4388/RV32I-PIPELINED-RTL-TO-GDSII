@@ -33,8 +33,13 @@ SkyWater 130 nm, SCL 9-track standard cells, 50 MHz.
 | Timing sign-off (1.62 V, 125 °C) | Tempus | setup slack +0.33 ns, hold slack +0.16 ns |
 | DRC | PVS | metal and via rules clean |
 | LVS | PVS | match |
+| Power, IR drop, EM (typical 1.8 V, 20% activity) | Innovus with Voltus | 28.1 mW, worst static IR drop 8 mV (0.44% of VDD), no EM violations |
 
 The only DRC errors left are two implant rules (`CDR.psd`) that the library's flip-flop and mux cells fail even on their own. In LVS I left out the antenna diode cells, because the rule deck doesn't extract them as devices.
+
+For the power grid I ran a static rail analysis on the routed design with the supply fed from the core ring. The worst combined VDD and VSS drop is 8 mV, and the worst wire carries about half of its EM current limit.
+
+<p align="center"><img src="docs/images/ir_map.gif" width="60%"></p>
 
 ## Layout
 
@@ -57,6 +62,7 @@ make lec
 make pnr
 make lec_pnr
 make sta
+make ir
 ```
 
 `make test ... GATE=syn` or `GATE=pnr` runs the same test on the gate-level netlist.
@@ -69,5 +75,5 @@ tb/         testbench
 tests/      directed test and linker script
 scripts/    Spike log compare, hex conversion
 riscv-dv/   random test lists
-pd/         synthesis, place and route, timing and LEC scripts
+pd/         synthesis, place and route, timing, LEC and IR/EM scripts
 ```
